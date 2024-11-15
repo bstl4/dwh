@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_dwh
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: my_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./dwh.dump:/docker-entrypoint-initdb.d/dwh.dump
+      - ./init.sh:/docker-entrypoint-initdb.d/init.sh
